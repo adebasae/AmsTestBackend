@@ -3,6 +3,8 @@ package com.ams.test.product.restcontroller;
 import com.ams.test.product.beans.ProductDetail;
 import com.ams.test.product.restcontroller.interfaces.IProductDetailController;
 import com.ams.test.product.services.interfaces.IProductDetailService;
+import com.ams.test.utilsGeneral.Constants;
+import com.ams.test.utilsGeneral.Response.Pojo.BaseResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +21,9 @@ public class ProductDetailController implements IProductDetailController {
 
 
     @Override
-    public ArrayList<ProductDetail> getSimilarProduct(String productId) {
-        logger.info("Comenzando getSimilarProduct en ProductDetailController ");
+    public BaseResponse getSimilarProduct(String productId) {
 
+        logger.info("Comenzando getSimilarProduct en ProductDetailController ");
         return productDetailService.getSimilarProduct(productId );
     }
 

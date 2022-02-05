@@ -32,7 +32,7 @@ public class WebClientProductService implements IWebClientProductService {
         logger.info("Iniciando Class: WebClientProductService; Method: getIdsProductSimilar");
         // Se que puede ir el return aqui pero para que se entienda mejor en este caso lo hice asi
         ArrayList<String> ids = wc.get().uri("/{id}/similarids", idProduct)
-                .retrieve().bodyToMono(new ParameterizedTypeReference<ArrayList<String>>() {}). block();
+                .retrieve().bodyToMono(new ParameterizedTypeReference<ArrayList<String>>() {}).block();
         logger.info("Recuperado ids");
         return  ids;
 

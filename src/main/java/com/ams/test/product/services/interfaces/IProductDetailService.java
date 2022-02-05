@@ -1,12 +1,10 @@
 package com.ams.test.product.services.interfaces;
 
-import com.ams.test.product.beans.ProductDetail;
-import com.ams.test.product.restcontroller.ProductDetailController;
+import com.ams.test.utilsGeneral.Response.Pojo.BaseResponse;
 
-import java.util.ArrayList;
 
 public interface IProductDetailService {
 
-    ArrayList<ProductDetail> getSimilarProduct(String id);
+    BaseResponse getSimilarProduct(String id);
 
 }
