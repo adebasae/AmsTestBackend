@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 public class ProductDetailDto  {
 
-    // Pongo String y no long o int porque el servicio devuelve un string
+    // Pongo String porque asi lo pone el contrato
     @JsonProperty
     private  String id ;
     @JsonProperty
