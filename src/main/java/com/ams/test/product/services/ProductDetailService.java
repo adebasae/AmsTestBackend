@@ -9,9 +9,9 @@ import java.util.ArrayList;
 @Service
 public class ProductDetailService  implements IProductDetailService {
 
-
     @Override
     public ArrayList<ProductDetail> getSimilarProduct(Long id) {
+
         return null;
     }
 }
