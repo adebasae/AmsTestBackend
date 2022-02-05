@@ -1,10 +1,11 @@
 package com.ams.test.product.services;
 
 import com.ams.test.product.beans.ProductDetail;
-import com.ams.test.product.dtos.WebClientProductDto;
+import com.ams.test.product.dtos.ProductDetailDto;
 import com.ams.test.product.restcontroller.ProductDetailController;
 import com.ams.test.product.services.interfaces.IProductDetailService;
 import com.ams.test.product.services.interfaces.IWebClientProductService;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,17 @@ public class ProductDetailService  implements IProductDetailService {
     IWebClientProductService webClientProductService;
 
     @Override
-    public ArrayList<ProductDetail> getSimilarProduct(Long id) {
+    public ArrayList<ProductDetail> getSimilarProduct(String id) {
         logger.info("Iniciando Class: ProductDetailService; Method: getSimilarProduct");
-        ArrayList<Long> idsSimiliars =  webClientProductService.getIdsProductSimilar( id);
-        for (Long idProduct:idsSimiliars) {
-            webClientProductService.getProductDetail(idProduct);
+        ModelMapper mm = new ModelMapper();
+        ArrayList<ProductDetail> productDetails =  new ArrayList<>();
+        ArrayList<String> idsSimiliars =  webClientProductService.getIdsProductSimilar( id);
+        for (String idProduct:idsSimiliars) {
+            ProductDetailDto productDetailDto = webClientProductService.getProductDetail(idProduct);
+            ProductDetail productDetail= mm.map(productDetailDto,ProductDetail.class);
+            productDetails.add(productDetail);
         }
         logger.info("Terminó Class: ProductDetailService; Method: getSimilarProduct");
-        return null;
+        return productDetails;
     }
 }

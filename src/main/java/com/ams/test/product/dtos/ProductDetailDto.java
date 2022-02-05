@@ -1,18 +1,20 @@
-package com.ams.test.product.beans;
+package com.ams.test.product.dtos;
 
-import org.springframework.stereotype.Component;
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigDecimal;
 
-// Se anotaria con entity si fuese una tabla de la bd
-@Component
-public class ProductDetail implements Serializable {
+public class ProductDetailDto  {
 
-    private String id;
+    // Pongo String y no long o int porque el servicio devuelve un string
+    @JsonProperty
+    private  String id ;
+    @JsonProperty
     private String name;
+    @JsonProperty
     private BigDecimal price;
+    @JsonProperty
     private boolean availability;
-
 
     public String getId() {
         return id;

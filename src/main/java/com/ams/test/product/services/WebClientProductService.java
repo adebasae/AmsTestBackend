@@ -1,6 +1,7 @@
 package com.ams.test.product.services;
 
 import com.ams.test.product.beans.ProductDetail;
+import com.ams.test.product.dtos.ProductDetailDto;
 import com.ams.test.product.services.interfaces.IWebClientProductService;
 import com.ams.test.utilsGeneral.Constants;
 import com.ams.test.utilsGeneral.restUtil.WebClientUtil;
@@ -27,11 +28,11 @@ public class WebClientProductService implements IWebClientProductService {
      * @return Lista de id de productos
      */
     @Override
-    public ArrayList<Long> getIdsProductSimilar(  Long idProduct) {
+    public ArrayList<String> getIdsProductSimilar(  String idProduct) {
         logger.info("Iniciando Class: WebClientProductService; Method: getIdsProductSimilar");
         // Se que puede ir el return aqui pero para que se entienda mejor en este caso lo hice asi
-        ArrayList<Long> ids = wc.get().uri("/{id}/similarids", idProduct)
-                .retrieve().bodyToMono(new ParameterizedTypeReference<ArrayList<Long>>() {}). block();
+        ArrayList<String> ids = wc.get().uri("/{id}/similarids", idProduct)
+                .retrieve().bodyToMono(new ParameterizedTypeReference<ArrayList<String>>() {}). block();
         logger.info("Recuperado ids");
         return  ids;
 
@@ -45,13 +46,13 @@ public class WebClientProductService implements IWebClientProductService {
      * @return Detalles del producto
      */
     @Override
-    public ArrayList<ProductDetail> getProductDetail(Long idProduct) {
+    public ProductDetailDto getProductDetail(String idProduct) {
         logger.info("Iniciando Class: WebClientProductService; Method: getProductDetail");
         // Se que puede ir el return aqui pero para que se entienda mejor en este caso lo hice asi
-        ArrayList<ProductDetail> productDetails = wc.get().uri("/{id}", idProduct)
-                .retrieve().bodyToMono(new ParameterizedTypeReference<ArrayList<ProductDetail>>() {}). block();
+        ProductDetailDto productDetail = wc.get().uri("/{id}", idProduct)
+                .retrieve().bodyToMono(new ParameterizedTypeReference<ProductDetailDto>() {}). block();
         logger.info("Recuperado detalles");
-        return  productDetails;
+        return  productDetail;
     }
 
 }

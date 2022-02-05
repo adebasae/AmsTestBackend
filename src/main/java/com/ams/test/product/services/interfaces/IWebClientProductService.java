@@ -1,14 +1,13 @@
 package com.ams.test.product.services.interfaces;
 
-import com.ams.test.product.beans.ProductDetail;
-import com.ams.test.product.dtos.WebClientProductDto;
+import com.ams.test.product.dtos.ProductDetailDto;
 
 import java.util.ArrayList;
 
 public interface IWebClientProductService {
 
-    ArrayList<Long> getIdsProductSimilar(  Long idProduct);
+    ArrayList<String> getIdsProductSimilar(  String idProduct);
 
-    ArrayList<ProductDetail> getProductDetail( Long idProduct);
+    ProductDetailDto getProductDetail(String idProduct);
 
 }

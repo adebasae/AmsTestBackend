@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public interface IProductDetailController {
 
     @RequestMapping(value = "/{productId}/similar", method = RequestMethod.GET)
-    ArrayList<ProductDetail> getSimilarProduct(@PathVariable("productId") Long productId);
+    ArrayList<ProductDetail> getSimilarProduct(@PathVariable("productId") String productId);
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     boolean test();

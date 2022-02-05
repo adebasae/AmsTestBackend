@@ -19,8 +19,9 @@ public class ProductDetailController implements IProductDetailController {
 
 
     @Override
-    public ArrayList<ProductDetail> getSimilarProduct(Long productId) {
+    public ArrayList<ProductDetail> getSimilarProduct(String productId) {
         logger.info("Comenzando getSimilarProduct en ProductDetailController ");
+
         return productDetailService.getSimilarProduct(productId );
     }
 
