@@ -26,6 +26,6 @@ public class ProductDetailController implements IProductDetailController {
 
     @Override
     public boolean test() {
-        return true;
+            return true;
     }
 }
