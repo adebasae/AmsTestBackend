@@ -10,6 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
+import reactor.core.publisher.Mono;
+
 import java.util.ArrayList;
 
 
@@ -32,7 +35,8 @@ public class WebClientProductService implements IWebClientProductService {
         logger.info("Iniciando Class: WebClientProductService; Method: getIdsProductSimilar");
         // Se que puede ir el return aqui pero para que se entienda mejor en este caso lo hice asi
         ArrayList<String> ids = wc.get().uri("/{id}/similarids", idProduct)
-                .retrieve().bodyToMono(new ParameterizedTypeReference<ArrayList<String>>() {}).block();
+                .retrieve().bodyToMono(new ParameterizedTypeReference<ArrayList<String>>() {}).onErrorResume(WebClientResponseException.class,
+                ex -> ex.getRawStatusCode() == 404 ? Mono.empty() : Mono.error(ex)).block();
         logger.info("Recuperado ids");
         return  ids;
 
@@ -50,7 +54,8 @@ public class WebClientProductService implements IWebClientProductService {
         logger.info("Iniciando Class: WebClientProductService; Method: getProductDetail");
         // Se que puede ir el return aqui pero para que se entienda mejor en este caso lo hice asi
         ProductDetailDto productDetail = wc.get().uri("/{id}", idProduct)
-                .retrieve().bodyToMono(new ParameterizedTypeReference<ProductDetailDto>() {}). block();
+                .retrieve().bodyToMono(new ParameterizedTypeReference<ProductDetailDto>() {}).onErrorResume(WebClientResponseException.class,
+                ex -> ex.getRawStatusCode() == 404 ? Mono.empty() : Mono.error(ex)).block();
         logger.info("Recuperado detalles");
         return  productDetail;
     }

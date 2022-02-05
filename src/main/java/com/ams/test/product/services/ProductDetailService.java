@@ -36,7 +36,7 @@ public class ProductDetailService  implements IProductDetailService {
             ModelMapper mm = new ModelMapper();
             ArrayList<ProductDetail> productDetails =  new ArrayList<>();
             ArrayList<String> idsSimiliars =  webClientProductService.getIdsProductSimilar( id);
-            if(idsSimiliars.size()==0){
+            if(idsSimiliars==null || idsSimiliars.size()==0){
                 throw new ProductException("Product not found");
             }
             for (String idProduct:idsSimiliars) {
@@ -50,11 +50,11 @@ public class ProductDetailService  implements IProductDetailService {
             br.setPojo(pojoResponse);
         }
         catch (ProductException e){
-            br.setDescription(Constants.KO + ": " + e.getMessage());
+            br.setDescription(Constants.KO + "-> " + e.getMessage());
             br.setHasError(true);
         }
         catch (Exception e){
-            br.setDescription(Constants.KO + ": " + e.getMessage());
+            br.setDescription(Constants.KO + "-> " + e.getMessage());
             br.setHasError(true);
         }
 
