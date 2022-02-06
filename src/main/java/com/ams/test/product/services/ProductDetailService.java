@@ -25,6 +25,14 @@ public class ProductDetailService  implements IProductDetailService {
     @Autowired
     IWebClientProductService webClientProductService;
 
+
+    /**
+     * Método que busca los productos similares de un determinado producto. Devuelve una lista de los mismos
+     *
+     * @param id
+     *            id del producto para buscar similares
+     * @return Lista de id de productos
+     */
     @Override
     public BaseResponse getSimilarProduct(String id) {
 
